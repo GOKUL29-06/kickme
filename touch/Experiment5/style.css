@@ -1,0 +1,8 @@
+students{display:block;box-sizing:border-box;min-height:100vh;padding:48px max(18px,calc((100% - 900px)/2));font-family:Segoe UI,Arial,sans-serif;background:#f4f6fc;color:#18233f}
+students:before{content:"STUDENT DIRECTORY";display:block;font-size:12px;font-weight:bold;letter-spacing:3px;color:#6558e8;margin-bottom:12px}
+students:after{content:"XML + CSS · Student records";display:block;margin-top:24px;color:#778198;font-size:13px}
+student{display:block;position:relative;background:#fff;margin:14px 0;padding:22px 24px 22px 30px;border:1px solid #e5eaf2;border-radius:16px;box-shadow:0 10px 24px #18233f0a}
+student:before{content:"";position:absolute;left:0;top:16px;bottom:16px;width:5px;border-radius:0 5px 5px 0;background:#6558e8}
+name{display:block;font-size:21px;font-weight:700;color:#18233f;margin-bottom:12px}
+age,course,grade{display:inline-block;margin:4px 7px 0 0;padding:7px 10px;border-radius:8px;background:#f0f2ff;color:#59617b;font-size:14px}
+grade{background:#e5fff3;color:#08764f;font-weight:bold}

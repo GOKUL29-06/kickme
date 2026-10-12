@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Interactive World Map</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:40px 18px;background:linear-gradient(135deg,#111b36,#273b68);font-family:Inter,Segoe UI,Arial,sans-serif;color:white}.wrap{max-width:1050px;margin:auto;text-align:center}.eyebrow{color:#9be9d0;font-size:.75rem;font-weight:800;letter-spacing:.2em}h1{font-size:clamp(2rem,5vw,3.5rem);margin:12px 0}.sub{color:#c5d0e7;line-height:1.7}.map-card{margin:30px auto 0;background:white;border-radius:22px;padding:clamp(12px,3vw,28px);box-shadow:0 25px 70px #0003}.map-card img{display:block;width:100%;height:auto;border-radius:12px}.hint{color:#65718a;font-size:.9rem;margin:15px 0 0}
+</style></head><body><main class="wrap"><div class="eyebrow">EXPLORE · DISCOVER · LEARN</div><h1>Explore the World</h1><p class="sub">Select a mapped region to learn more about the country.</p>
+<div class="map-card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1200px-World_map_-_low_resolution.svg.png" alt="World Map" usemap="#worldmap" width="1200">
+<map name="worldmap">
+<area shape="rect" coords="180,130,320,200" alt="USA" href="https://en.wikipedia.org/wiki/United_States" target="_blank">
+<area shape="rect" coords="620,200,760,270" alt="India" href="https://en.wikipedia.org/wiki/India" target="_blank">
+<area shape="circle" coords="1000,400,60" alt="Australia" href="https://en.wikipedia.org/wiki/Australia" target="_blank">
+</map><p class="hint">Clickable areas: USA · India · Australia</p></div></main></body></html>

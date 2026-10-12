@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Three Types of CSS</title><link rel="stylesheet" href="style.css">
+<style>
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:#f5f7fc;color:#18233f;padding:35px 18px}
+main{max-width:900px;margin:auto}.intro{text-align:center;margin-bottom:30px}.intro p{color:#69758c}
+.examples{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{padding:25px;border-radius:18px;background:white;border:1px solid #e5eaf2;box-shadow:0 12px 30px #18233f0b}
+.internal-css{color:#13764d;background:#e8fff4;border:1px solid #a9e8ce}
+.card h2{margin-top:0;font-size:1.2rem}.tag{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:#6a5ce7}
+</style></head><body><main><header class="intro"><div class="tag">CSS BASICS</div><h1>Three Ways to Style a Web Page</h1><p>Compare inline, internal and external CSS.</p></header>
+<div class="examples">
+<section class="card"><div class="tag">01 · Inline</div><h2 style="color:#dc4267">Inline CSS Example</h2><p style="line-height:1.7">This paragraph uses an inline style attribute.</p></section>
+<section class="card internal-css"><div class="tag">02 · Internal</div><h2>Internal CSS Example</h2><p>This card is styled using the style element in the document head.</p></section>
+<section class="card external-css"><div class="tag">03 · External</div><h2>External CSS Example</h2><p>This card is styled by the separate style.css file.</p></section>
+</div></main></body></html>
