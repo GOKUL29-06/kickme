@@ -1,0 +1,552 @@
+ADVANCED MACHINE LEARNING LAB
+ALL 10 EXPERIMENTS
+AIM, PROCEDURE, PROGRAM, OUTPUT AND RESULT
+
+============================================================
+EXPERIMENT 1: CENTRAL TENDENCY AND DISPERSION
+============================================================
+
+AIM:
+To calculate the mean, median, mode, variance and standard deviation of a dataset.
+
+PROCEDURE:
+1. Import the statistics module.
+2. Create a list of numerical values.
+3. Calculate the mean, median, mode, variance and standard deviation.
+4. Display the calculated values.
+
+PROGRAM:
+import statistics
+
+data = [1, 2, 2, 3, 4, 4, 4, 5, 5]
+
+print("Mean:", statistics.mean(data))
+print("Median:", statistics.median(data))
+print("Mode:", statistics.mode(data))
+print("Variance:", statistics.variance(data))
+print("Standard Deviation:", statistics.stdev(data))
+
+OUTPUT:
+Mean: 3.3333333333333335
+Median: 4
+Mode: 4
+Variance: 2
+Standard Deviation: 1.4142135623730951
+
+RESULT:
+The mean, median, mode, variance and standard deviation were calculated successfully.
+
+
+============================================================
+EXPERIMENT 2: LINEAR AND MULTIPLE LINEAR REGRESSION
+============================================================
+
+AIM:
+To implement linear regression and multiple linear regression using the California Housing dataset.
+
+PROCEDURE:
+1. Import the required libraries and load the California Housing dataset.
+2. Select one feature for simple linear regression.
+3. Split the data into training and testing sets.
+4. Train a Linear Regression model and evaluate it.
+5. Train another model using all features for multiple linear regression.
+6. Display the R-squared scores and mean squared errors.
+
+PROGRAM:
+from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+housing = fetch_california_housing()
+X = housing.data
+y = housing.target
+
+# Simple linear regression using one feature
+X_simple = X[:, [0]]
+X_train, X_test, y_train, y_test = train_test_split(
+    X_simple, y, test_size=0.2, random_state=42
+)
+
+simple_model = LinearRegression()
+simple_model.fit(X_train, y_train)
+simple_pred = simple_model.predict(X_test)
+
+print("Simple Linear Regression")
+print("R-squared:", r2_score(y_test, simple_pred))
+print("Mean Squared Error:", mean_squared_error(y_test, simple_pred))
+
+# Multiple linear regression using all features
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+multiple_model = LinearRegression()
+multiple_model.fit(X_train, y_train)
+multiple_pred = multiple_model.predict(X_test)
+
+print("\\nMultiple Linear Regression")
+print("R-squared:", r2_score(y_test, multiple_pred))
+print("Mean Squared Error:", mean_squared_error(y_test, multiple_pred))
+
+OUTPUT:
+The program prints the R-squared score and mean squared error for both models.
+Exact numerical values can vary with dataset/library versions. The California Housing dataset may need to be downloaded the first time the program runs.
+
+RESULT:
+Simple linear regression and multiple linear regression were implemented and evaluated successfully.
+
+
+============================================================
+EXPERIMENT 3: LOGISTIC REGRESSION USING IRIS DATASET
+============================================================
+
+AIM:
+To classify Iris flowers using Logistic Regression.
+
+PROCEDURE:
+1. Import the required libraries.
+2. Load the Iris dataset.
+3. Split the dataset into training and testing sets.
+4. Train a Logistic Regression classifier.
+5. Predict the classes of the test data.
+6. Display accuracy, confusion matrix and classification report.
+
+PROGRAM:
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
+
+model = LogisticRegression(max_iter=200)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+print("Classification Report:")
+print(classification_report(y_test, y_pred, target_names=iris.target_names))
+
+OUTPUT:
+Accuracy: The program displays the calculated accuracy.
+Confusion Matrix: The program displays the number of correct and incorrect predictions for each Iris class.
+Classification Report: Precision, recall, F1-score and support are displayed.
+Exact values may vary slightly by scikit-learn version.
+
+RESULT:
+The Logistic Regression model was trained and used to classify Iris flowers successfully.
+
+
+============================================================
+EXPERIMENT 4: BINARY CLASSIFICATION USING LOGISTIC REGRESSION
+============================================================
+
+AIM:
+To perform binary classification on the Breast Cancer dataset using Logistic Regression.
+
+PROCEDURE:
+1. Import the required libraries.
+2. Load the Breast Cancer dataset.
+3. Split the data into training and testing sets.
+4. Scale the features using StandardScaler.
+5. Train a Logistic Regression classifier.
+6. Predict the test classes and display the evaluation metrics.
+
+PROGRAM:
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+data = load_breast_cancer()
+X = data.data
+y = data.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
+
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+print("Classification Report:")
+print(classification_report(y_test, y_pred, target_names=data.target_names))
+
+OUTPUT:
+Accuracy: The program prints the calculated accuracy.
+Confusion Matrix: The program displays the correct and incorrect predictions.
+Classification Report: Precision, recall, F1-score and support are displayed.
+The exact numerical output depends on the library version.
+
+RESULT:
+The Logistic Regression model successfully performs binary classification on the Breast Cancer dataset.
+
+
+============================================================
+EXPERIMENT 5: K-NEAREST NEIGHBOURS AND NAIVE BAYES
+============================================================
+
+AIM:
+To implement K-Nearest Neighbours and Naive Bayes classification using the Iris dataset.
+
+PROCEDURE:
+1. Import the required libraries.
+2. Load the Iris dataset.
+3. Split the data into training and testing sets.
+4. Train the K-Nearest Neighbours classifier.
+5. Train the Gaussian Naive Bayes classifier.
+6. Predict test classes and compare accuracy.
+
+PROGRAM:
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
+
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
+
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X_train, y_train)
+y_pred_knn = knn.predict(X_test)
+
+nb = GaussianNB()
+nb.fit(X_train, y_train)
+y_pred_nb = nb.predict(X_test)
+
+knn_accuracy = accuracy_score(y_test, y_pred_knn)
+nb_accuracy = accuracy_score(y_test, y_pred_nb)
+
+print("K-Nearest Neighbors Accuracy:", knn_accuracy)
+print("Naive Bayes Accuracy:", nb_accuracy)
+
+OUTPUT:
+K-Nearest Neighbors Accuracy: 1.0
+Naive Bayes Accuracy: 0.9777777777777777
+
+RESULT:
+K-Nearest Neighbours and Gaussian Naive Bayes classifiers were implemented successfully and their accuracies were compared.
+
+
+============================================================
+EXPERIMENT 6: DECISION TREE CLASSIFICATION AND PARAMETER TUNING
+============================================================
+
+AIM:
+To implement a Decision Tree classifier and find suitable parameters using GridSearchCV.
+
+PROCEDURE:
+1. Import the required libraries and load the Iris dataset.
+2. Split the dataset into training and testing sets.
+3. Define a Decision Tree classifier.
+4. Define the parameter values to test.
+5. Use GridSearchCV to find the best parameters.
+6. Evaluate the best model on the test dataset.
+
+PROGRAM:
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
+
+model = DecisionTreeClassifier(random_state=42)
+parameters = {
+    "criterion": ["gini", "entropy"],
+    "max_depth": [None, 2, 3, 4, 5],
+    "min_samples_split": [2, 5, 10]
+}
+
+grid = GridSearchCV(model, parameters, cv=5)
+grid.fit(X_train, y_train)
+
+best_model = grid.best_estimator_
+y_pred = best_model.predict(X_test)
+
+print("Best Parameters:", grid.best_params_)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Classification Report:")
+print(classification_report(y_test, y_pred, target_names=iris.target_names))
+
+OUTPUT:
+Best Parameters: The program prints the best parameter combination found by GridSearchCV.
+Accuracy: The program prints the test accuracy.
+Classification Report: Precision, recall, F1-score and support are displayed.
+
+RESULT:
+The Decision Tree classifier was trained, tuned using GridSearchCV and evaluated successfully.
+
+
+============================================================
+EXPERIMENT 7: K-MEANS CLUSTERING
+============================================================
+
+AIM:
+To group data into four clusters using the K-Means clustering algorithm.
+
+PROCEDURE:
+1. Import Matplotlib and the required scikit-learn modules.
+2. Generate a synthetic dataset containing four clusters.
+3. Plot the original data.
+4. Apply K-Means clustering.
+5. Plot the coloured clusters and cluster centres.
+6. Display the number of clusters and their centres.
+
+PROGRAM:
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
+
+X, y = make_blobs(
+    n_samples=300,
+    centers=4,
+    cluster_std=0.60,
+    random_state=0
+)
+
+plt.scatter(X[:, 0], X[:, 1], s=50)
+plt.title("Original Data Distribution")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.show()
+
+kmeans = KMeans(n_clusters=4, random_state=42, n_init=10)
+kmeans.fit(X)
+
+centers = kmeans.cluster_centers_
+labels = kmeans.labels_
+
+plt.scatter(X[:, 0], X[:, 1], c=labels, s=50, cmap="viridis")
+plt.scatter(centers[:, 0], centers[:, 1], s=200, marker="X")
+plt.title("K-Means Clustering with 4 Clusters")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.show()
+
+print("Number of clusters:", kmeans.n_clusters)
+print("Cluster centres:")
+print(centers)
+
+OUTPUT:
+Two graphs are displayed: the original data distribution and the four coloured clusters with their centres.
+Number of clusters: 4
+Cluster centres:
+The program prints the coordinates of the four cluster centres.
+
+RESULT:
+The K-Means algorithm successfully grouped the data into four clusters and displayed their centres.
+
+
+============================================================
+EXPERIMENT 8: CNN IMAGE CLASSIFICATION USING MNIST
+============================================================
+
+AIM:
+To build a Convolutional Neural Network (CNN) for handwritten digit classification using the MNIST dataset.
+
+PROCEDURE:
+1. Import TensorFlow and the required libraries.
+2. Load the MNIST training and testing datasets.
+3. Normalize pixel values and reshape the images.
+4. Build a CNN with convolution, pooling and dense layers.
+5. Compile and train the model.
+6. Evaluate the model on the test dataset.
+
+PROGRAM:
+import tensorflow as tf
+from tensorflow.keras import layers, models
+
+(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+
+x_train = x_train.astype("float32") / 255.0
+x_test = x_test.astype("float32") / 255.0
+
+x_train = x_train.reshape(-1, 28, 28, 1)
+x_test = x_test.reshape(-1, 28, 28, 1)
+
+model = models.Sequential([
+    layers.Conv2D(32, (3, 3), activation="relu", input_shape=(28, 28, 1)),
+    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(64, (3, 3), activation="relu"),
+    layers.MaxPooling2D((2, 2)),
+    layers.Flatten(),
+    layers.Dense(64, activation="relu"),
+    layers.Dense(10, activation="softmax")
+])
+
+model.compile(
+    optimizer="adam",
+    loss="sparse_categorical_crossentropy",
+    metrics=["accuracy"]
+)
+
+model.fit(x_train, y_train, epochs=5, batch_size=64, validation_split=0.1)
+test_loss, test_accuracy = model.evaluate(x_test, y_test, verbose=0)
+
+print("Test Loss:", test_loss)
+print("Test Accuracy:", test_accuracy)
+
+OUTPUT:
+The program displays training progress for five epochs.
+Test Loss: A numerical value is displayed.
+Test Accuracy: A numerical value is displayed. Accuracy depends on training and the software environment; it may differ from the sample in the lab PDF.
+
+RESULT:
+The CNN model was trained and evaluated for handwritten digit classification using MNIST.
+
+
+============================================================
+EXPERIMENT 9: AUTOENCODER USING MNIST
+============================================================
+
+AIM:
+To implement an autoencoder that learns a compressed representation of MNIST images.
+
+PROCEDURE:
+1. Import TensorFlow and load the MNIST dataset.
+2. Normalize the image pixels.
+3. Flatten each 28 by 28 image into 784 values.
+4. Build an encoder and decoder.
+5. Compile and train the autoencoder.
+6. Encode the test images and display the encoded shape.
+
+PROGRAM:
+import tensorflow as tf
+from tensorflow.keras import layers, models
+
+(x_train, _), (x_test, _) = tf.keras.datasets.mnist.load_data()
+
+x_train = x_train.astype("float32") / 255.0
+x_test = x_test.astype("float32") / 255.0
+
+x_train = x_train.reshape(-1, 784)
+x_test = x_test.reshape(-1, 784)
+
+input_layer = layers.Input(shape=(784,))
+encoded = layers.Dense(64, activation="relu")(input_layer)
+decoded = layers.Dense(784, activation="sigmoid")(encoded)
+
+autoencoder = models.Model(input_layer, decoded)
+encoder = models.Model(input_layer, encoded)
+
+autoencoder.compile(optimizer="adam", loss="binary_crossentropy")
+autoencoder.fit(
+    x_train, x_train,
+    epochs=20,
+    batch_size=256,
+    shuffle=True,
+    validation_data=(x_test, x_test)
+)
+
+encoded_images = encoder.predict(x_test, verbose=0)
+print("Encoded representation shape:", encoded_images.shape)
+
+OUTPUT:
+Training loss and validation loss are displayed for each epoch.
+Encoded representation shape: (10000, 64)
+
+RESULT:
+The autoencoder successfully compressed each MNIST image into a 64-value encoded representation and reconstructed the input images.
+
+
+============================================================
+EXPERIMENT 10: SIMPLE LSTM FOR SEQUENCE PREDICTION
+============================================================
+
+AIM:
+To implement a Long Short-Term Memory (LSTM) network for predicting values in a sine-wave sequence.
+
+PROCEDURE:
+1. Import NumPy and TensorFlow.
+2. Generate sine-wave data.
+3. Prepare input sequences and their next-value targets.
+4. Reshape the data for the LSTM layer.
+5. Build and train the LSTM model.
+6. Predict values and compare predictions with actual values.
+
+PROGRAM:
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras import layers, models
+
+np.random.seed(42)
+tf.random.set_seed(42)
+
+time = np.arange(0, 100, 0.1)
+series = np.sin(time)
+
+sequence_length = 10
+X = []
+y = []
+
+for i in range(len(series) - sequence_length):
+    X.append(series[i:i + sequence_length])
+    y.append(series[i + sequence_length])
+
+X = np.array(X)
+y = np.array(y)
+X = X.reshape((X.shape[0], X.shape[1], 1))
+
+split = int(len(X) * 0.8)
+X_train, X_test = X[:split], X[split:]
+y_train, y_test = y[:split], y[split:]
+
+model = models.Sequential([
+    layers.Input(shape=(sequence_length, 1)),
+    layers.LSTM(50),
+    layers.Dense(1)
+])
+
+model.compile(optimizer="adam", loss="mean_squared_error")
+model.fit(X_train, y_train, epochs=20, batch_size=32, verbose=1)
+
+predictions = model.predict(X_test, verbose=0)
+
+print("First 5 predictions:")
+print(predictions[:5].flatten())
+print("First 5 actual values:")
+print(y_test[:5])
+
+OUTPUT:
+First 5 predictions:
+The program prints the first five predicted values.
+First 5 actual values:
+The program prints the corresponding five actual values.
+Exact values vary with training and the TensorFlow version.
+
+RESULT:
+The LSTM model was trained successfully to predict the next value in a sine-wave sequence.
+
+
+END OF ADVANCED MACHINE LEARNING LAB PROGRAMS
